@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Guess a Number game in Django
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+
+    <h1>Guess the number!</h1>
+    Attempts: {{ attempts}}<br/><br/>
+    {{ message }}.<br/>
+
+    <form action="{% url 'home' %}" method="post">
+        {% csrf_token %}    
+        <div class="mb-3">
+            <input type="hidden" name="attempts" value="{{ attempts }}">
+        </div>
+        <div class="mb-3">
+            <input type="hidden" name="number" value="{{ number }}">
+        </div>
+        <div class="mb-3">
+          <input type="text" name="guess" class="form-control" id="exampleInputEmail1" placeholder="Enter a number">
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+
+    </div>
+{% endblock %}
+
